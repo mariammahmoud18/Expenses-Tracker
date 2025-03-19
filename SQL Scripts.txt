@@ -1,0 +1,35 @@
+CREATE TABLE users (
+    userid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE category (
+    categoryid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE expenses (
+    expenseid INT AUTO_INCREMENT PRIMARY KEY,
+    amount DECIMAL(10,2) NOT NULL,
+    date DATE NOT NULL,
+    description TEXT,
+    categoryid INT NOT NULL,
+    userid INT NOT NULL,
+    FOREIGN KEY (categoryid) REFERENCES category(categoryid) ON DELETE CASCADE,
+    FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE
+);
+
+CREATE TABLE roles (
+    roleid INT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE user_roles (
+    userid INT NOT NULL,
+    roleid INT NOT NULL,
+    PRIMARY KEY (userid, roleid),
+    FOREIGN KEY (userid) REFERENCES users(userid) ON DELETE CASCADE,
+    FOREIGN KEY (roleid) REFERENCES roles(roleid) ON DELETE CASCADE
+);
