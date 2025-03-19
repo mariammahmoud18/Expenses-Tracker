@@ -57,7 +57,10 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 ### Expense
 - An expense belongs to a user and a category.
 
-## Database Schema
+## Database schema
+![Expenses Tracker DB scheme](https://github.com/user-attachments/assets/743e66d6-41d6-408e-b251-972f1906301a)
+
+## Database Script
 
 ```sql
 CREATE TABLE users (
