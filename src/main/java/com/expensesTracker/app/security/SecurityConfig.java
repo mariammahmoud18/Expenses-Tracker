@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
    @Bean
@@ -51,7 +53,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/tracker/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/tracker/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/tracker/expenses").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/tracker/expenses/**").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/tracker/expenses/*").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/tracker/expenses/*/users").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.POST, "/tracker/expenses").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.DELETE, "/tracker/expenses/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/tracker/roles").hasRole("ADMIN")

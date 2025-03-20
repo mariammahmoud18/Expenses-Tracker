@@ -4,19 +4,14 @@ import com.expensesTracker.app.DTO.expensesDTO;
 import com.expensesTracker.app.DTOMappers.expensesMapper;
 import com.expensesTracker.app.entities.Category;
 import com.expensesTracker.app.entities.Expenses;
-import com.expensesTracker.app.entities.Roles;
 import com.expensesTracker.app.entities.Users;
 import com.expensesTracker.app.repository.categoryRepository;
 import com.expensesTracker.app.repository.expensesRepository;
-import com.expensesTracker.app.repository.rolesRepository;
 import com.expensesTracker.app.repository.usersRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class expensesService {
@@ -50,6 +45,34 @@ public class expensesService {
     public void deleteExpense(int id){
         repo.deleteById(id);
     }
+
+    public Map<String, Double> getExpensesByCategoryPerUser(int userId) {
+        List<Object[]> results = repo.getTotalExpensesByCategoryPerUser(userId);
+        Map<String, Double> expensesByCategory = new HashMap<>();
+
+        for (Object[] result : results) {
+            String category = (String) result[0];
+            Double totalAmount = (Double) result[1];
+            expensesByCategory.put(category, totalAmount);
+        }
+
+        return expensesByCategory;
+    }
+
+    public Map<String, Double> getExpensesByCategory() {
+        List<Object[]> results = repo.getTotalExpensesByCategory();
+        Map<String, Double> expensesByCategory = new HashMap<>();
+
+        for (Object[] result : results) {
+            String category = (String) result[0];
+            Double totalAmount = (Double) result[1];
+            expensesByCategory.put(category, totalAmount);
+        }
+
+        return expensesByCategory;
+    }
+
+
 
 
 

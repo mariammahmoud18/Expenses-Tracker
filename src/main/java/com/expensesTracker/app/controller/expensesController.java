@@ -6,9 +6,12 @@ import com.expensesTracker.app.entities.Roles;
 import com.expensesTracker.app.service.expensesService;
 import com.expensesTracker.app.service.rolesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -35,6 +38,17 @@ public class expensesController {
     @PostMapping("/expenses")
     public expensesDTO createExpense(@RequestBody expensesDTO expensesDTO){
         return service.saveExpense(expensesDTO);
+    }
+
+    @GetMapping("/expenses/{userId}/users")
+    public ResponseEntity<Map<String, Double>> getExpensesByCategoryPerUser(@PathVariable int userId) {
+        return ResponseEntity.ok(service.getExpensesByCategoryPerUser(userId));
+    }
+
+    @GetMapping("/expenses/users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Double>> getExpensesByCategory() {
+        return ResponseEntity.ok(service.getExpensesByCategory());
     }
 
 }
