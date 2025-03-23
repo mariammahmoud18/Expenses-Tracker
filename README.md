@@ -29,6 +29,8 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 - Create Expense: Add an expense entry.
 - Get Expense by ID: Retrieve details of a specific expense.
 - Get All Expenses: List all expenses.
+- Get Users Expenses By Category: List all users expenses categorised by spending type.
+- Get User Expenses By Category: List a user's expenses categorised by spending type.
 - Delete Expense: Remove an expense entry.
 
 ## Technologies Used
@@ -122,7 +124,7 @@ CREATE TABLE user_roles (
 
 ## API Endpoints
 
-### User Endpoints
+### Users Endpoints
 - `GET /tracker/users` - Retrieve all users (Admin only)
 - `GET /tracker/users/{id}` - Retrieve a specific user
 - `GET /tracker/users/{id}/roles` - Retrieve a specific user roles
@@ -131,7 +133,7 @@ CREATE TABLE user_roles (
 - `PUT /tracker/users` - Update user details (Admin only)
 - `DELETE /tracker/users/{id}` - Delete a user (Admin only)
 
-### Role Endpoints
+### Roles Endpoints
 - `GET /tracker/roles` - Retrieve all roles (Admin only)
 - `GET /tracker/roles/{id}` - Retrieve a specific role (Admin only)
 - `POST /tracker/roles` - Add a new role (Admin only)
@@ -143,9 +145,11 @@ CREATE TABLE user_roles (
 - `POST /tracker/category` - Add a new category
 - `DELETE /tracker/category/{id}` - Delete a category (Admin only)
 
-### Expense Endpoints
+### Expenses Endpoints
 - `GET /tracker/expenses` - Retrieve all expenses (Admin only)
 - `GET /tracker/expenses/{id}` - Retrieve a specific expense
+- `GET /tracker/expenses/{userId}/users` - Get a user's expenses spending types
+- `GET /tracker/expenses/users` - Get all users' expenses spending types (Admin only)
 - `POST /tracker/expenses` - Add a new expense
 - `DELETE /tracker/expenses/{id}` - Delete an expense (Admin only)
 
