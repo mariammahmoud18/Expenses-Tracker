@@ -7,15 +7,12 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -53,6 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/tracker/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/tracker/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/tracker/expenses").hasRole("ADMIN")
+                        .requestMatchers("/tracker/expenses/chart").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/tracker/expenses/*").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.GET, "/tracker/expenses/*/users").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.POST, "/tracker/expenses").hasAnyRole("ADMIN","USER")

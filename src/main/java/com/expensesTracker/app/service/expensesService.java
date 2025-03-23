@@ -48,28 +48,23 @@ public class expensesService {
 
     public Map<String, Double> getExpensesByCategoryPerUser(int userId) {
         List<Object[]> results = repo.getTotalExpensesByCategoryPerUser(userId);
-        Map<String, Double> expensesByCategory = new HashMap<>();
-
-        for (Object[] result : results) {
-            String category = (String) result[0];
-            Double totalAmount = (Double) result[1];
-            expensesByCategory.put(category, totalAmount);
-        }
-
-        return expensesByCategory;
+        return setExpensesByCategoryData(results);
     }
 
     public Map<String, Double> getExpensesByCategory() {
         List<Object[]> results = repo.getTotalExpensesByCategory();
-        Map<String, Double> expensesByCategory = new HashMap<>();
+        return setExpensesByCategoryData(results);
+    }
 
+    public Map<String, Double> setExpensesByCategoryData(List<Object[]> results) {
+        Map<String, Double> expensesByCategory = new HashMap<>();
         for (Object[] result : results) {
             String category = (String) result[0];
             Double totalAmount = (Double) result[1];
             expensesByCategory.put(category, totalAmount);
         }
-
         return expensesByCategory;
+
     }
 
 
