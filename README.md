@@ -1,6 +1,6 @@
 # Expenses Tracker
 
-The **Expenses Tracker** is a web-based application built using **Spring Boot 3.5.0** and **Java 23**. It helps users manage and track their expenses efficiently by providing CRUD operations on various entities such as Users, Roles, Categories, and Expenses.
+The **Expenses Tracker** is a web-based application built with **Spring Boot 3.5.0** and **Java 23** that enables users to efficiently manage and track their expenses. It supports CRUD operations for Users, Roles, Categories, and Expenses, while integrating **QuickChart** for dynamic expense visualization and **PDF export functionality** for generating detailed financial reports. The application also features **secure authentication** with role-based access control, providing a seamless and insightful expense management experience
 
 ## Features
 
@@ -49,10 +49,13 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 ## Third Party Integerations
 ### QuickChart API:
 - Used to generate doughnut charts for expense tracking, providing admins with a visual representation of users spending types and their amount.
+![Expenses By Catgeory Chart](https://github.com/user-attachments/assets/dc7b4a6c-7281-4915-a488-bfca810e0762)
+
 
 ### iTextPDF:
 
 - Used to export user expenses in a structured PDF format.
+![User Expenses PDF](https://github.com/user-attachments/assets/31ba37ba-77a0-45a4-9d22-5dd18e4a8445)
 
 
 ## Entity Relationships
