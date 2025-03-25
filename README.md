@@ -10,8 +10,9 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 - Get All Users: List all registered users.
 - Delete User: Remove a user from the system.
 - Update User: Modify details of an existing user.
-- Get User Roles: Retrieve user roles details using a uniqe ID.
+- Get User Roles: Retrieve user roles details using a unique ID.
 - Get User Expenses: Retrieve user expenses details using a unique ID.
+- Get User Expenses PDF: Retrieve user expenses details in a pdf format using a unique ID
   
 ### Role Management
 - Create Role: Add new roles to the system.
@@ -31,6 +32,7 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 - Get All Expenses: List all expenses.
 - Get Users Expenses By Category: List all users expenses categorised by spending type.
 - Get User Expenses By Category: List a user's expenses categorised by spending type.
+- Get Expenses By Category Chart: Show doughnut chart with all users expenses categorised by spending type.
 - Delete Expense: Remove an expense entry.
 
 ## Technologies Used
@@ -43,6 +45,15 @@ The **Expenses Tracker** is a web-based application built using **Spring Boot 3.
 - **Maven**: Build automation and dependency management.
 - **Postman**: API testing.
 - **Swagger**: API documentation.
+
+## Third Party Integerations
+### QuickChart API:
+- Used to generate doughnut charts for expense tracking, providing admins with a visual representation of users spending types and their amount.
+
+### iTextPDF:
+
+- Used to export user expenses in a structured PDF format.
+
 
 ## Entity Relationships
 
@@ -129,6 +140,7 @@ CREATE TABLE user_roles (
 - `GET /tracker/users/{id}` - Retrieve a specific user
 - `GET /tracker/users/{id}/roles` - Retrieve a specific user roles
 - `GET /tracker/users/{id}/expenses` - Retrieve a specific user expenses
+- `GET /tracker/users/{id}/expenses/pdf-download` - download a pdf format of a specific user expenses
 - `POST /tracker/users` - Add a new user (Admin only)
 - `PUT /tracker/users` - Update user details (Admin only)
 - `DELETE /tracker/users/{id}` - Delete a user (Admin only)
@@ -150,6 +162,7 @@ CREATE TABLE user_roles (
 - `GET /tracker/expenses/{id}` - Retrieve a specific expense
 - `GET /tracker/expenses/{userId}/users` - Get a user's expenses spending types
 - `GET /tracker/expenses/users` - Get all users' expenses spending types (Admin only)
+- `GET /tracker/expenses/chart` - Get all users' expenses spending types in a doughnut chart (Admin only)
 - `POST /tracker/expenses` - Add a new expense
 - `DELETE /tracker/expenses/{id}` - Delete an expense (Admin only)
 
