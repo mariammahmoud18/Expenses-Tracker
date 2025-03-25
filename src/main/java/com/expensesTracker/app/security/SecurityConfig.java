@@ -44,6 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/tracker/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/tracker/users/**").hasAnyRole("USER","ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/tracker/users/**").hasRole("ADMIN")
